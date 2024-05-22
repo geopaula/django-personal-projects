@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container mt-5">
+
+    <h1 class="text-center">{{ title }}</h1>
+    <h3 class="text-center">Ferramenta verificadora de acertos na Lotofácil!</h3>
+
+    <div class="card mt-4 text-center " >
+        <h5 class="card-header">Verifique seus números</h5>
+        <div class="card-body">
+
+            
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    {{ form.concurso.label_tag }}
+                    {{ form.concurso }}
+                    <small class="form-text text-muted">{{ form.concurso.help_text }}</small>
+                    {% if form.concurso.errors %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.concurso.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.numbers.label_tag }}
+                    {{ form.numbers }}
+                    <small class="form-text text-muted">{{ form.numbers.help_text }}</small>
+                    {% if form.numbers.errors %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.numbers.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+               
+                    <button type="submit" name="verify" class="btn btn-primary btn-block">Verificar</button>
+               
+            </form>
+        </div>
+
+   
+    {% if amount_matched_nums is not None %}
+   
+        <div class="card-body">
+            <h2 class="text-center">Números sorteados do concurso {{ chosen_concurso.concurso }}:</h2>
+            <div class="circle-container">
+                <div class="circle">{{ chosen_concurso.bola1 }}</div>
+                <div class="circle">{{ chosen_concurso.bola2 }}</div>
+                <div class="circle">{{ chosen_concurso.bola3 }}</div>
+                <div class="circle">{{ chosen_concurso.bola4 }}</div>
+                <div class="circle">{{ chosen_concurso.bola5 }}</div>
+                <div class="circle">{{ chosen_concurso.bola6 }}</div>
+                <div class="circle">{{ chosen_concurso.bola7 }}</div>
+                <div class="circle">{{ chosen_concurso.bola8 }}</div>
+                <div class="circle">{{ chosen_concurso.bola9 }}</div>
+                <div class="circle">{{ chosen_concurso.bola10 }}</div>
+                <div class="circle">{{ chosen_concurso.bola11 }}</div>
+                <div class="circle">{{ chosen_concurso.bola12 }}</div>
+                <div class="circle">{{ chosen_concurso.bola13 }}</div>
+                <div class="circle">{{ chosen_concurso.bola14 }}</div>
+                <div class="circle">{{ chosen_concurso.bola15 }}</div>
+            </div>
+            <!-- Espaçador-->
+            <div style="height: 30px;"></div>
+            <!-- Espaçador-->
+            <h3 class="text-center">Você acertou {{ amount_matched_nums }} números!</h3>
+            <p class="text-center">Números acertados: <br> <span class="text-success ">{{ matched_nums|join:" " }}</span></p>
+            <div class="table-responsive">
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rateio 15 acertos</th>
+                            <th scope="col">Rateio 14 acertos</th>
+                            <th scope="col">Rateio 13 acertos</th>
+                            <th scope="col">Rateio 12 acertos</th>
+                            <th scope="col">Rateio 11 acertos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr scope="row">
+                            <td class="{% if amount_matched_nums == 15 %}bg-success text-white{% endif %}">{{ chosen_concurso.rateio_15_acertos }}</td>
+                            <td class="{% if amount_matched_nums == 14 %}bg-success text-white{% endif %}">{{ chosen_concurso.rateio_14_acertos }}</td>
+                            <td class="{% if amount_matched_nums == 13 %}bg-success text-white{% endif %}">{{ chosen_concurso.rateio_13_acertos }}</td>
+                            <td class="{% if amount_matched_nums == 12 %}bg-success text-white{% endif %}">{{ chosen_concurso.rateio_12_acertos }}</td>
+                            <td class="{% if amount_matched_nums == 11 %}bg-success text-white{% endif %}">{{ chosen_concurso.rateio_11_acertos }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+    {% endif %}
+</div>
+</div>
+
+
+            <!-- Espaçador-->
+            <div style="height: 60px;"></div>
+            <!-- Espaçador-->
+
+    <div class="card mt-4 text-center ">
+        <div class="card-body">
+            <h2>Último concurso: {{ latest_result.concurso }}</h2>
+            <h3>Data do último sorteio: {{ latest_result.data_sorteio }}</h3>
+
+            <h4>Números sorteados:</h4>
+            <div class="circle-container">
+                <div class="circle">{{ latest_result.bola1 }}</div>
+                <div class="circle">{{ latest_result.bola2 }}</div>
+                <div class="circle">{{ latest_result.bola3 }}</div>
+                <div class="circle">{{ latest_result.bola4 }}</div>
+                <div class="circle">{{ latest_result.bola5 }}</div>
+                <div class="circle">{{ latest_result.bola6 }}</div>
+                <div class="circle">{{ latest_result.bola7 }}</div>
+                <div class="circle">{{ latest_result.bola8 }}</div>
+                <div class="circle">{{ latest_result.bola9 }}</div>
+                <div class="circle">{{ latest_result.bola10 }}</div>
+                <div class="circle">{{ latest_result.bola11 }}</div>
+                <div class="circle">{{ latest_result.bola12 }}</div>
+                <div class="circle">{{ latest_result.bola13 }}</div>
+                <div class="circle">{{ latest_result.bola14 }}</div>
+                <div class="circle">{{ latest_result.bola15 }}</div>
+            </div>
+            <form method="post" class="mt-3">
+                {% csrf_token %}
+                <button type="submit" name="update" class="btn btn-secondary">Atualizar Resultados</button>
+            </form>
+            <p class="mt-3">{{ update_message }}</p>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
