@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
@@ -38,3 +39,12 @@ class LotofacilResult(models.Model):
 
     def __str__(self):
         return f"Concurso {self.concurso} - {self.data_sorteio}"
+    
+
+class UserPicks(models.Model):
+    play_number = models.IntegerField()
+    concurso = models.IntegerField()
+    number = models.IntegerField()
+    
+
+    

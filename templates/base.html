@@ -29,22 +29,66 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .background-image {
+      position: relative;
+      background-image: url('https://images.pexels.com/photos/3954336/pexels-photo-3954336.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Substitua pelo URL da sua imagem */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Ajuste a obscuridade conforme necessário */
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+
+
+    .tech-box {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      min-width: 200px;
+    }
+    
+    .tech-box i {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ddd;
+    }
+    .tech-box p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
     </style>
 </head>
 <body>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" style="background-color: #A020F0;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
         <div class="container-fluid">
-            <a class="navbar-brand" href="/home"><i class="fa fa-heart"></i> Projeto Web Gege</a>
+            <a class="navbar-brand" href="/home"><i class="fas fa-code"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link active " aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/curriculo">Curriculo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/contato">Contato</a>
@@ -54,9 +98,7 @@
                             Projetos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/projetos/tabela-cad-fi">Tabela Cad Fi</a></li>
-                            <li><a class="dropdown-item" href="/projetos/cadastro-usuarios">Cadastro de Usuários</a></li>
-                            <li><a class="dropdown-item" href="/projetos/conversor-de-arquivos">Conversor de Arquivos</a></li>
+                            <li><a class="dropdown-item" href="/projetos/lotofacil">Conferir Números da Lotofácil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/projetos">Ver todos</a></li>
                         </ul>
@@ -67,8 +109,8 @@
     </nav>
     <!-- FIM DE NAVBAR-->
     
-    <div style="margin-top: 10vh; margin-bottom: 10vh;">
-        {% block conteudo %}{% endblock %}
+    
+        {% block content %}{% endblock %}
     </div>
 </body>
 </html>

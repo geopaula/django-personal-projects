@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from lotofacil import views as views_lotofacil
+from info import views as views_info
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home', views_info.home_view, name='home'),
+    path('curriculo', views_info.cv_view, name='curriculo'),
     path('projetos/lotofacil/', views_lotofacil.lotofacil_view, name='lotofacil'),
 ]

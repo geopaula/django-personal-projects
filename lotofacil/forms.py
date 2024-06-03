@@ -20,6 +20,7 @@ class LotofacilForm(forms.Form):
                                      'class': 'form-control form-control-sm',}), 
     )
 
+    
     def clean_concurso(self):
         data = self.cleaned_data['concurso']
         concurso = data

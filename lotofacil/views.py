@@ -5,7 +5,10 @@ from datetime import date
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from .models import LotofacilResult
+from .models import UserPicks
 from .forms import LotofacilForm
+import uuid
+
 
 
 def lotofacil_view(request):
@@ -33,9 +36,14 @@ def lotofacil_view(request):
 
             # filtrando apenas o concurso escolhido pelo usuário
             chosen_concurso = LotofacilResult.objects.filter(concurso=form.cleaned_data['concurso']).first()
+            
+            save_concurso =  form.cleaned_data['concurso']
 
              # atribuindo os números digitados a uma variável e dividindo em uma lista
             user_chosen_numbers = form.cleaned_data['numbers']
+
+            # chamando a função para salvar os números digitados pelo usuário
+            save_user_picks(save_concurso, user_chosen_numbers)
 
             winning_numbers = [
                 chosen_concurso.bola1, chosen_concurso.bola2, chosen_concurso.bola3, chosen_concurso.bola4,
@@ -57,6 +65,28 @@ def lotofacil_view(request):
     context['form'] = form
     
     return render(request, 'lotofacil.html', context)
+
+
+# função para guardar no banco de dados os números digitados pelo usuário 
+def save_user_picks(save_concurso, user_chosen_numbers):
+    
+    i = 0
+    if UserPicks.objects.filter(play_number = i).exists():
+        i += 1
+
+    for selected_number in user_chosen_numbers:
+        UserPicks.objects.create(
+            play_number = i,
+            concurso = save_concurso,
+            number = selected_number,
+        )
+       
+       
+        
+                
+
+
+
 
 
 # função para baixar os últimos resultados do site da Caixa
@@ -137,4 +167,5 @@ def update_results():
         print(f"download falhou. código de erro: {response.status_code}")
     
     return
+
 
