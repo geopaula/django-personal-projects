@@ -125,6 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = 'personal_projects/media/'
-MEDIA_URL = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = os.path.join(BASE_DIR, 'personal_projects/media/')
+INPUT_IMAGE = MEDIA_ROOT
 
 #C:\Projects\Django\personal_projects\media\lotofacil_results\lotofacil_results_2024-05-22.xlsx
