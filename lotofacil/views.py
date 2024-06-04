@@ -95,7 +95,6 @@ def update_results():
     file_name = f"lotofacil_results_{date.today()}.xlsx"
 
     # juntado o MEDIA_ROOT das configurações com o nome do arquivo
-    #save_path = fss.path(f"lotofacil_results/{file_name}")
     save_path = fss.path(f"lotofacil_results/{file_name}")
 
     # pegando o arquivo excel da url
@@ -156,10 +155,10 @@ def update_results():
                 observacao=row['Observação']
             )
         
-        print(f"arquivo baixado e salvo em: {save_path}")
-        print("dados carregados com sucesso no banco de dados!")
+        print(f"Arquivo baixado e salvo em: {save_path}")
+        print("Dados carregados com sucesso no banco de dados!")
     else:
-        print(f"download falhou. código de erro: {response.status_code}")
+        print(f"O download falhou. Código de erro: {response.status_code}")
     
     return
 
