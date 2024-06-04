@@ -82,12 +82,6 @@ def save_user_picks(save_concurso, user_chosen_numbers):
         )
        
        
-        
-                
-
-
-
-
 
 # função para baixar os últimos resultados do site da Caixa
 def update_results():  
@@ -101,6 +95,7 @@ def update_results():
     file_name = f"lotofacil_results_{date.today()}.xlsx"
 
     # juntado o MEDIA_ROOT das configurações com o nome do arquivo
+    #save_path = fss.path(f"lotofacil_results/{file_name}")
     save_path = fss.path(f"lotofacil_results/{file_name}")
 
     # pegando o arquivo excel da url
